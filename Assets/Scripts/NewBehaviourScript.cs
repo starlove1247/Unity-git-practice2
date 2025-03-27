@@ -18,8 +18,10 @@ public class NewBehaviourScript : MonoBehaviour
     {
         // GameObject hand = GameObject.Find("Hand"); // 尋找名為Hand遊戲物件，並儲存為區域變數
         Debug.Log($"進入偵測區域");
-        // GameObject box = GameObject.Find("寶箱");
-        box.SetActive(true);
+        GameObject box1 = GameObject.Find("寶箱1");
+        box1.SetActive(true);
+        GameObject box2 = GameObject.Find("寶箱2");
+        box2.SetActive(false);
         // GameObject.Find("寶箱").SetActive(true);
         // gameObject.SetActive(false);
     }

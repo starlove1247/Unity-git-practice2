@@ -9,10 +9,13 @@ public class CSharpPracticeTests
     [TestCase(-4 , 6, 2 , Description = "負數加正數")]
     public void Add_Two_Number(int a , int b , int expected)
     {
+        // arrange
         CsharpPractice csharpPractice = new CsharpPractice();
-    
+
+        // act
         int result = csharpPractice.Add(a , b);
     
+        // assert
         Assert.AreEqual(expected , result);
     }
 
