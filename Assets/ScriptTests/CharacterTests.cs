@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -51,5 +52,30 @@ public class CharacterTests
         // 驗證敵人血量是預期結果
         var enemyHp = enemy.GetHp();
         Assert.AreEqual(expected , enemyHp);
+    }
+
+    [Test(Description = "角色攻擊偵測到的所有敵人")]
+    public void Character_Attack_AllTriggeredEnemies()
+    {
+        // arrange
+        var character = new GameObject().AddComponent<Character>();
+        character.SetAtk(10);
+        var enemyGo1       = new GameObject();
+        var enemy1Collider = enemyGo1.AddComponent<BoxCollider2D>();
+        var enemy1         = enemyGo1.AddComponent<Enemy>();
+        enemy1.SetHp(100);
+        var enemyGo2       = new GameObject();
+        var enemy2Collider = enemyGo2.AddComponent<BoxCollider2D>();
+        var enemy2         = enemyGo2.AddComponent<Enemy>();
+        enemy2.SetHp(50);
+        character.OnTriggerEnter2D(enemy1Collider);
+        character.OnTriggerEnter2D(enemy2Collider);
+
+        // act
+        character.AttackAllTriggeredEnemies();
+
+        // assert
+        Assert.AreEqual(90 , enemy1.GetHp());
+        Assert.AreEqual(40 , enemy2.GetHp());
     }
 }
